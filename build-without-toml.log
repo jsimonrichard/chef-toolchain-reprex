@@ -1,0 +1,282 @@
+Sending build context to Docker daemon  1.119GB
+Step 1/11 : FROM lukemathwalker/cargo-chef:0.1.35-rust-buster AS chef
+ ---> 18c12b60fb65
+Step 2/11 : WORKDIR /usr/src/app
+ ---> Running in 94aa36d13f44
+Removing intermediate container 94aa36d13f44
+ ---> 028c05bce9d2
+Step 3/11 : FROM chef as planner
+ ---> 028c05bce9d2
+Step 4/11 : COPY . .
+ ---> 68b5789cabfa
+Step 5/11 : RUN cargo chef prepare --recipe-path recipe.json
+ ---> Running in daab4379ee60
+Removing intermediate container daab4379ee60
+ ---> 4763daf0560d
+Step 6/11 : FROM chef as builder
+ ---> 028c05bce9d2
+Step 7/11 : COPY --from=planner /usr/src/app/recipe.json recipe.json
+ ---> 579610ffa2b9
+Step 8/11 : RUN cargo chef cook --release --recipe-path recipe.json
+ ---> Running in 4c08816101a5
+    Updating crates.io index
+ Downloading crates ...
+  Downloaded autocfg v1.1.0
+  Downloaded generic-array v0.14.5
+  Downloaded ctr v0.8.0
+  Downloaded aead v0.4.3
+  Downloaded cookie v0.16.0
+  Downloaded base64 v0.13.0
+  Downloaded tokio-macros v1.7.0
+  Downloaded pear_codegen v0.2.3
+  Downloaded rocket_codegen v0.5.0-rc.2
+  Downloaded stable-pattern v0.1.0
+  Downloaded pear v0.2.3
+  Downloaded num_cpus v1.13.1
+  Downloaded scopeguard v1.1.0
+  Downloaded rand_chacha v0.3.1
+  Downloaded rand_core v0.6.3
+  Downloaded pin-project-lite v0.2.9
+  Downloaded smallvec v1.8.0
+  Downloaded proc-macro2 v1.0.39
+  Downloaded memchr v2.5.0
+  Downloaded serde v1.0.137
+  Downloaded itoa v1.0.2
+  Downloaded rand v0.8.5
+  Downloaded syn v1.0.95
+  Downloaded want v0.3.0
+  Downloaded fnv v1.0.7
+  Downloaded bitflags v1.3.2
+  Downloaded futures v0.3.21
+  Downloaded futures-task v0.3.21
+  Downloaded futures-sink v0.3.21
+  Downloaded futures-io v0.3.21
+  Downloaded futures-core v0.3.21
+  Downloaded futures-channel v0.3.21
+  Downloaded futures-util v0.3.21
+  Downloaded state v0.5.3
+  Downloaded ubyte v0.10.2
+  Downloaded devise_core v0.3.1
+  Downloaded devise_codegen v0.3.1
+  Downloaded atomic v0.5.1
+  Downloaded opaque-debug v0.3.0
+  Downloaded mime v0.3.16
+  Downloaded httparse v1.7.1
+  Downloaded signal-hook-registry v1.4.0
+  Downloaded ref-cast-impl v1.0.7
+  Downloaded percent-encoding v2.1.0
+  Downloaded ref-cast v1.0.7
+  Downloaded parking_lot_core v0.9.3
+  Downloaded proc-macro2-diagnostics v0.9.1
+  Downloaded polyval v0.5.3
+  Downloaded time-macros v0.2.4
+  Downloaded sha2 v0.10.2
+  Downloaded multer v2.0.2
+  Downloaded figment v0.10.6
+  Downloaded subtle v2.4.1
+  Downloaded spin v0.9.3
+  Downloaded lazy_static v1.4.0
+  Downloaded http v0.2.7
+  Downloaded tempfile v3.3.0
+  Downloaded socket2 v0.4.4
+  Downloaded tokio-stream v0.1.8
+  Downloaded time v0.3.9
+  Downloaded tokio-util v0.6.10
+  Downloaded tokio-util v0.7.2
+  Downloaded binascii v0.1.4
+  Downloaded rocket_http v0.5.0-rc.2
+  Downloaded try-lock v0.2.3
+  Downloaded tracing-attributes v0.1.21
+  Downloaded atty v0.2.14
+  Downloaded cfg-if v1.0.0
+  Downloaded tracing-core v0.1.26
+  Downloaded getrandom v0.2.6
+  Downloaded toml v0.5.9
+  Downloaded either v1.6.1
+  Downloaded tracing v0.1.34
+  Downloaded unicode-ident v1.0.0
+  Downloaded hashbrown v0.11.2
+  Downloaded universal-hash v0.4.1
+  Downloaded unicode-xid v0.2.3
+  Downloaded version_check v0.9.4
+  Downloaded typenum v1.15.0
+  Downloaded crypto-common v0.1.3
+  Downloaded ghash v0.4.4
+  Downloaded yansi v0.5.1
+  Downloaded http-body v0.4.5
+  Downloaded glob v0.3.0
+  Downloaded ppv-lite86 v0.2.16
+  Downloaded log v0.4.17
+  Downloaded aes v0.7.5
+  Downloaded h2 v0.3.13
+  Downloaded aes-gcm v0.9.4
+  Downloaded cipher v0.3.0
+  Downloaded block-buffer v0.10.2
+  Downloaded fastrand v1.7.0
+  Downloaded digest v0.10.3
+  Downloaded bytes v1.1.0
+  Downloaded cpufeatures v0.2.2
+  Downloaded async-trait v0.1.53
+  Downloaded async-stream-impl v0.3.3
+  Downloaded async-stream v0.3.3
+  Downloaded uncased v0.9.7
+  Downloaded tower-service v0.3.1
+  Downloaded tokio v1.18.2
+  Downloaded devise v0.3.1
+  Downloaded slab v0.4.6
+  Downloaded lock_api v0.4.7
+  Downloaded httpdate v1.0.2
+  Downloaded pin-utils v0.1.0
+  Downloaded once_cell v1.12.0
+  Downloaded remove_dir_all v0.5.3
+  Downloaded serde_derive v1.0.137
+  Downloaded quote v1.0.18
+  Downloaded parking_lot v0.12.0
+  Downloaded num_threads v0.1.6
+  Downloaded inlinable_string v0.1.15
+  Downloaded indexmap v1.8.1
+  Downloaded hmac v0.12.1
+  Downloaded mio v0.8.3
+  Downloaded rocket v0.5.0-rc.2
+  Downloaded libc v0.2.126
+  Downloaded hkdf v0.12.3
+  Downloaded encoding_rs v0.8.31
+  Downloaded hyper v0.14.18
+   Compiling version_check v0.9.4
+   Compiling typenum v1.15.0
+   Compiling libc v0.2.126
+   Compiling proc-macro2 v1.0.39
+   Compiling unicode-ident v1.0.0
+   Compiling syn v1.0.95
+   Compiling cfg-if v1.0.0
+   Compiling autocfg v1.1.0
+   Compiling memchr v2.5.0
+   Compiling futures-channel v0.3.21
+   Compiling futures-core v0.3.21
+   Compiling log v0.4.17
+   Compiling pin-project-lite v0.2.9
+   Compiling yansi v0.5.1
+   Compiling subtle v2.4.1
+   Compiling serde_derive v1.0.137
+   Compiling bytes v1.1.0
+   Compiling httparse v1.7.1
+   Compiling serde v1.0.137
+   Compiling futures-sink v0.3.21
+   Compiling futures-task v0.3.21
+   Compiling once_cell v1.12.0
+   Compiling cpufeatures v0.2.2
+   Compiling itoa v1.0.2
+   Compiling futures-util v0.3.21
+   Compiling opaque-debug v0.3.0
+   Compiling ref-cast v1.0.7
+   Compiling time-macros v0.2.4
+   Compiling slab v0.4.6
+   Compiling lazy_static v1.4.0
+   Compiling futures-io v0.3.21
+   Compiling pin-utils v0.1.0
+   Compiling fnv v1.0.7
+   Compiling ppv-lite86 v0.2.16
+   Compiling bitflags v1.3.2
+   Compiling try-lock v0.2.3
+   Compiling num_threads v0.1.6
+   Compiling hashbrown v0.11.2
+   Compiling inlinable_string v0.1.15
+   Compiling httpdate v1.0.2
+   Compiling base64 v0.13.0
+   Compiling percent-encoding v2.1.0
+   Compiling tower-service v0.3.1
+   Compiling encoding_rs v0.8.31
+   Compiling smallvec v1.8.0
+   Compiling parking_lot_core v0.9.3
+   Compiling async-trait v0.1.53
+   Compiling state v0.5.3
+   Compiling scopeguard v1.1.0
+   Compiling either v1.6.1
+   Compiling mime v0.3.16
+   Compiling spin v0.9.3
+   Compiling glob v0.3.0
+   Compiling remove_dir_all v0.5.3
+   Compiling unicode-xid v0.2.3
+   Compiling fastrand v1.7.0
+   Compiling binascii v0.1.4
+   Compiling generic-array v0.14.5
+   Compiling proc-macro2-diagnostics v0.9.1
+   Compiling cookie v0.16.0
+   Compiling uncased v0.9.7
+   Compiling multer v2.0.2
+   Compiling figment v0.10.6
+   Compiling rocket v0.5.0-rc.2
+   Compiling indexmap v1.8.1
+   Compiling lock_api v0.4.7
+   Compiling atomic v0.5.1
+   Compiling tracing-core v0.1.26
+   Compiling http v0.2.7
+   Compiling tracing v0.1.34
+   Compiling quote v1.0.18
+   Compiling getrandom v0.2.6
+   Compiling socket2 v0.4.4
+   Compiling time v0.3.9
+   Compiling signal-hook-registry v1.4.0
+   Compiling num_cpus v1.13.1
+   Compiling atty v0.2.14
+   Compiling tempfile v3.3.0
+   Compiling http-body v0.4.5
+   Compiling mio v0.8.3
+   Compiling want v0.3.0
+   Compiling stable-pattern v0.1.0
+   Compiling rand_core v0.6.3
+   Compiling tokio v1.18.2
+   Compiling crypto-common v0.1.3
+   Compiling block-buffer v0.10.2
+   Compiling universal-hash v0.4.1
+   Compiling cipher v0.3.0
+   Compiling aead v0.4.3
+   Compiling parking_lot v0.12.0
+   Compiling rand_chacha v0.3.1
+   Compiling digest v0.10.3
+   Compiling polyval v0.5.3
+   Compiling ctr v0.8.0
+   Compiling aes v0.7.5
+   Compiling futures v0.3.21
+   Compiling rand v0.8.5
+   Compiling ghash v0.4.4
+   Compiling hmac v0.12.1
+   Compiling sha2 v0.10.2
+   Compiling hyper v0.14.18
+   Compiling aes-gcm v0.9.4
+   Compiling hkdf v0.12.3
+   Compiling devise_core v0.3.1
+   Compiling tokio-macros v1.7.0
+   Compiling pear_codegen v0.2.3
+   Compiling tracing-attributes v0.1.21
+   Compiling ref-cast-impl v1.0.7
+   Compiling devise_codegen v0.3.1
+   Compiling async-stream-impl v0.3.3
+   Compiling async-stream v0.3.3
+   Compiling devise v0.3.1
+   Compiling pear v0.2.3
+   Compiling rocket_http v0.5.0-rc.2
+   Compiling tokio-util v0.7.2
+   Compiling tokio-util v0.6.10
+   Compiling tokio-stream v0.1.8
+   Compiling rocket_codegen v0.5.0-rc.2
+   Compiling toml v0.5.9
+   Compiling ubyte v0.10.2
+   Compiling h2 v0.3.13
+   Compiling app v0.0.1 (/usr/src/app)
+    Finished release [optimized] target(s) in 1m 57s
+Removing intermediate container 4c08816101a5
+ ---> c3f99ae4f03c
+Step 9/11 : COPY . .
+ ---> 697dcc20386f
+Step 10/11 : RUN cargo build --release
+ ---> Running in a11e774e04da
+   Compiling app v0.1.0 (/usr/src/app)
+    Finished release [optimized] target(s) in 9.87s
+Removing intermediate container a11e774e04da
+ ---> a68bf25c1095
+Step 11/11 : CMD ["target/release/app"]
+ ---> Running in 159fcd61381f
+Removing intermediate container 159fcd61381f
+ ---> 9ba8251287b7
+Successfully built 9ba8251287b7
